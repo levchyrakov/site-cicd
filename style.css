@@ -168,6 +168,14 @@ code {
   background: #eef1f6;
 }
 
+/* Выделение обновлений */
+mark {
+  padding: 2px 8px;
+  background: #fff3b0;
+  border-radius: 4px;
+  colr: var(--text);
+}
+
 /* Подвал */
 .site-footer {
   padding: 16px 0;
