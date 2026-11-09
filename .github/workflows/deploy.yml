@@ -1,0 +1,79 @@
+# Workflow: проверка кода и публикация статического сайта на GitHub Pages.
+# Файл размещается в репозитории по пути: .github/workflows/deploy.yml
+
+name: Deploy static site   # название workflow (видно на вкладке Actions)
+
+# Триггеры: каждый push в ветку main + ручной запуск из вкладки Actions
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Права доступа, необходимые для публикации на GitHub Pages
+permissions:
+  contents: read    # чтение файлов репозитория
+  pages: write      # разрешение на публикацию в Pages
+  id-token: write   # OIDC-токен для подтверждения деплоя
+
+# Одновременно выполняется только один деплой
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # Задание 1: автопроверка качества кода (линтинг)
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install linters
+        run: npm install --no-audit --no-fund
+
+      - name: Lint HTML (HTMLHint)
+        run: npm run lint:html
+
+      - name: Lint CSS (Stylelint)
+        run: npm run lint:css
+
+  # Задание 2: сборка и публикация (только если lint прошёл успешно)
+  deploy:
+    needs: lint
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      # ссылка на опубликованный сайт появится в сводке запуска
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Шаг 1. Скопировать файлы репозитория на виртуальную машину
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # Шаг 2. Собрать сайт: только нужные файлы + отметка о сборке
+      - name: Build site
+        run: |
+          mkdir _site
+          cp *.html *.css _site/
+          BUILD="${GITHUB_SHA::7} · $(TZ=Europe/Moscow date +'%d.%m.%Y %H:%M') МСК"
+          sed -i "s/__BUILD_INFO__/${BUILD}/" _site/*.html
+
+      # Шаг 3. Подготовить окружение GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      # Шаг 4. Упаковать собранный сайт в артефакт
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: '_site'
+
+      # Шаг 5. Опубликовать артефакт на GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
