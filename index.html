@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мой сайт — главная</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">site<span>-cicd</span></a>
+      <nav class="nav">
+        <a class="nav-link active" href="index.html">Главная</a>
+        <a class="nav-link" href="pipeline.html">Пайплайн</a>
+        <a class="nav-link" href="about.html">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Привет, GitHub Actions!</h1>
+      <p class="version">версия до изменения</p>
+      <p class="lead">
+        Это статический сайт, который публикуется на GitHub Pages
+        автоматически: после каждого push в ветку main запускается
+        workflow, проверяет код и выкладывает новую версию.
+      </p>
+    </section>
+
+    <section class="cards">
+      <article class="card">
+        <h2>1. Push</h2>
+        <p>Изменения отправляются в репозиторий на GitHub.</p>
+      </article>
+      <article class="card">
+        <h2>2. Проверка</h2>
+        <p>Линтеры HTMLHint и Stylelint проверяют разметку и стили.</p>
+      </article>
+      <article class="card">
+        <h2>3. Деплой</h2>
+        <p>Сайт собирается и публикуется на GitHub Pages без ручных действий.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Учебный проект по курсу «Информатика», ГУАП, 2026</p>
+      <p class="build">Сборка: __BUILD_INFO__</p>
+    </div>
+  </footer>
+</body>
+</html>

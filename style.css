@@ -1,0 +1,195 @@
+/* Общие стили для всех страниц сайта */
+:root {
+  --bg: #f6f7fb;
+  --surface: #fff;
+  --text: #1f2330;
+  --muted: #5d6475;
+  --accent: #2f6fdf;
+  --border: #dde1ea;
+  --ok: #1a7f37;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Шапка и навигация */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent);
+  background: #eaf0fc;
+}
+
+/* Первый экран */
+.hero {
+  padding: 48px 0 24px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.version {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.lead {
+  max-width: 680px;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+code {
+  padding: 2px 6px;
+  font-family: Consolas, monospace;
+  font-size: 0.9em;
+  background: #eceef3;
+  border-radius: 4px;
+}
+
+/* Карточки на главной */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-bottom: 48px;
+}
+
+.card {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.card h2,
+.step h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.card p,
+.step p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Шаги пайплайна */
+.steps {
+  display: grid;
+  gap: 16px;
+  padding: 0 0 48px;
+  margin: 0;
+  list-style: none;
+}
+
+.step {
+  padding: 20px 20px 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+}
+
+/* Таблица на странице «О проекте» */
+.info {
+  width: 100%;
+  margin-bottom: 48px;
+  border-collapse: collapse;
+  background: var(--surface);
+}
+
+.info caption {
+  padding-bottom: 8px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.info th,
+.info td {
+  padding: 10px 14px;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+.info th {
+  background: #eef1f6;
+}
+
+/* Подвал */
+.site-footer {
+  padding: 16px 0;
+  font-size: 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+.site-footer p {
+  margin: 4px 0;
+}
+
+.build {
+  color: var(--ok);
+}
+
+@media (width <= 700px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+}

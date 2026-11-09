@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мой сайт — пайплайн CI/CD</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">site<span>-cicd</span></a>
+      <nav class="nav">
+        <a class="nav-link" href="index.html">Главная</a>
+        <a class="nav-link active" href="pipeline.html">Пайплайн</a>
+        <a class="nav-link" href="about.html">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Как устроен пайплайн</h1>
+      <p class="lead">
+        Workflow описан в файле <code>.github/workflows/deploy.yml</code>
+        и состоит из двух заданий (job). Второе задание запускается,
+        только если первое завершилось успешно.
+      </p>
+    </section>
+
+    <ol class="steps">
+      <li class="step">
+        <h2>Событие push</h2>
+        <p>Любой коммит в ветку main запускает workflow «Deploy static site».</p>
+      </li>
+      <li class="step">
+        <h2>Job lint</h2>
+        <p>
+          На виртуальной машине ubuntu-latest устанавливается Node.js,
+          затем HTMLHint проверяет все HTML-страницы, а Stylelint — файл стилей.
+          При ошибке пайплайн останавливается и сайт не обновляется.
+        </p>
+      </li>
+      <li class="step">
+        <h2>Job deploy</h2>
+        <p>
+          Файлы сайта копируются в папку _site, в подвал страниц
+          подставляются номер коммита и время сборки, после чего
+          артефакт публикуется на GitHub Pages.
+        </p>
+      </li>
+    </ol>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Учебный проект по курсу «Информатика», ГУАП, 2026</p>
+      <p class="build">Сборка: __BUILD_INFO__</p>
+    </div>
+  </footer>
+</body>
+</html>

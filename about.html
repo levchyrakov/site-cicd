@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мой сайт — о проекте</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">site<span>-cicd</span></a>
+      <nav class="nav">
+        <a class="nav-link" href="index.html">Главная</a>
+        <a class="nav-link" href="pipeline.html">Пайплайн</a>
+        <a class="nav-link active" href="about.html">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>О проекте</h1>
+      <p class="lead">
+        Сайт создан в рамках лабораторной работы № 6
+        «Автоматизация развёртывания проекта с помощью GitHub Actions (CI/CD)».
+      </p>
+    </section>
+
+    <table class="info">
+      <caption>Используемые технологии</caption>
+      <thead>
+        <tr>
+          <th>Компонент</th>
+          <th>Назначение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HTML5 и CSS3</td>
+          <td>Страницы сайта с общим шаблоном и одним файлом стилей</td>
+        </tr>
+        <tr>
+          <td>GitHub</td>
+          <td>Хранение исходного кода и истории изменений</td>
+        </tr>
+        <tr>
+          <td>GitHub Actions</td>
+          <td>Автоматическая проверка и публикация при каждом push</td>
+        </tr>
+        <tr>
+          <td>HTMLHint, Stylelint</td>
+          <td>Линтеры: автопроверка качества разметки и стилей</td>
+        </tr>
+        <tr>
+          <td>GitHub Pages</td>
+          <td>Бесплатный хостинг статического сайта</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Учебный проект по курсу «Информатика», ГУАП, 2026</p>
+      <p class="build">Сборка: __BUILD_INFO__</p>
+    </div>
+  </footer>
+</body>
+</html>
